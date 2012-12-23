@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">DummyApp4Testing</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_home">Home</string>
+    <string name="Send">Send</string>
+    <string name="InputTextFieldHint">Enter a number</string>
+    <string name="CalculateFactorial">Calculate Factorial</string>
+    <string name="outputTextViewHint">Result</string>
+    <string name="title_activity_calculate_factorial">CalculateFactorial</string>
+    <string name="title_activity_migration_home">MigrationHome</string>
+    <string name="title_activity_object_factorial">ObjectFactorial</string>
+
+</resources>
