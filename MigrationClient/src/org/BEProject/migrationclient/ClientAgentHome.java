@@ -11,12 +11,12 @@ import android.view.Menu;
 
 public class ClientAgentHome extends Activity {
 
-	private static final String MIGRATE_ACTION = "com.sourabh.dummy.clientagent.MIGRATE_REQUEST";
-	private static final String HOST_NAME = "localhost";
+	private static final String MIGRATE_ACTION ="com.sourabh.dummy.clientagent.MIGRATE_REQUEST";
+	private static final String HOST_NAME = "192.168.1.2";
 	private static final int PORT_NUMBER = 9090;
 	private static final boolean ACCEPTED = true;
-	private static final String REQUEST = null;
 	private static final String DATA_FILES_PATHS = "DATA_FILES_PATHS";
+	private static final String INNER_INTENT = "INNER_INTENT";
 	private Intent resultIntent;
 	private Client client;
 
@@ -53,6 +53,9 @@ public class ClientAgentHome extends Activity {
 				// TODO Auto-generated catch block
 				resultIntent = new Intent();
 				resultIntent.putExtra("EXCEPTION", e);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		 }
 		setResult(resultCode, resultIntent);
@@ -60,23 +63,24 @@ public class ClientAgentHome extends Activity {
 
 	}
 
-	private Intent migrate(Intent intent)
+	private Intent migrate(Intent intent) throws IOException, ClassNotFoundException
 	{
 		Bundle bundle=intent.getExtras();
-		String dataFilesPaths[]=bundle.getStringArray(DATA_FILES_PATHS);
-		
+		//String dataFilesPaths[]=bundle.getStringArray(DATA_FILES_PATHS);
+		Intent innerIntent=(Intent) bundle.get(INNER_INTENT);
 		client.sendObjectToServer(innerIntent);
-		
-		return null;
+		Intent recievedIntent=(Intent) client.getObjectFromServer();
+		return recievedIntent;
 	}
 
 	private boolean migrateRequest() throws IOException
 	{
 		client = new Client(HOST_NAME, PORT_NUMBER);
 		// TODO change request to class and method
-		client.sendTextToServer(REQUEST);
+		String requestString="REQUEST";
+		client.sendTextToServer(requestString);
 		String response = client.getTextFromServer();
-		return response.equals("ACCEPTED") ? true : false;
+		return response.equals("ACCEPTED");
 	}
 
 	@Override

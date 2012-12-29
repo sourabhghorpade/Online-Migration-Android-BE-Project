@@ -31,8 +31,10 @@ public class MigrationHome extends Activity
     	Intent intent= new Intent(MIGRATE_ACTION);
     	TextView inputTextView=(TextView)findViewById(R.id.textViewInput);
     	String numberString=inputTextView.getText().toString();
-    	intent.putExtra(NUMBER,numberString);
-    	startActivityForResult(intent,RESULT_OK);
+    	Intent innerIntent=new Intent();
+    	innerIntent.putExtra(FACTORIAL,numberString);
+    	intent.putExtra("INNER_INTENT", innerIntent);
+    	startActivityForResult(intent,0);
     }
     
     @Override

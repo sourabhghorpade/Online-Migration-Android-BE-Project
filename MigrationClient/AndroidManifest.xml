@@ -16,8 +16,11 @@
             android:label="@string/title_activity_client_agent_home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-				<action android:name="com.sourabh.dummy.clientagent.MIGRATE_REQUEST"/>
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sourabh.dummy.clientagent.MIGRATE_REQUEST" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>
